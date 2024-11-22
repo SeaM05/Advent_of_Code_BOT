@@ -37,11 +37,11 @@ def get_players():
 
         data = json.loads(page)
         players = [(member['name'],
-                   member['local_score'],
-                   member['stars'],
-                   int(member['last_star_ts']),
-                   member['completion_day_level'],
-                   member['id']) for member in data['members'].values()]
+                    member['local_score'],
+                    member['stars'],
+                    int(member['last_star_ts']),
+                    member['completion_day_level'],
+                    member['id']) for member in data['members'].values()]
 
         for i, player in enumerate(players):
             if not player[0]:
@@ -110,10 +110,10 @@ async def leaderboard(interaction: discord.Interaction, num_players: int = 20):
     leaderboard = []
     for i, player in enumerate(players):
         leaderboard.append(PLAYER_STR_FORMAT.format(rank=i + 1,
-                                                  name=player[0], name_pad=max_name_len,
-                                                  points=player[1], points_pad=max_points_len,
-                                                  stars=player[2], stars_pad=max_stars_len,
-                                                  star_time=time.strftime('%H:%M %d/%m', time.localtime(player[3]))))
+                                                    name=player[0], name_pad=max_name_len,
+                                                    points=player[1], points_pad=max_points_len,
+                                                    stars=player[2], stars_pad=max_stars_len,
+                                                    star_time=time.strftime('%H:%M %d/%m', time.localtime(player[3]))))
 
     await output_leaderboard(interaction, leaderboard)
 
@@ -132,10 +132,10 @@ async def rank(interaction: discord.Interaction, player_name: str):
         i, player = players[0]
         result = '```'
         result += PLAYER_STR_FORMAT.format(rank=i + 1,
-                                         name=player[0], name_pad=len(player[0]),
-                                         points=player[1], points_pad=len(str(player[1])),
-                                         stars=player[2], stars_pad=len(str(player[2])),
-                                         star_time=time.strftime('%H:%M %d/%m', time.localtime(player[3])))
+                                            name=player[0], name_pad=len(player[0]),
+                                            points=player[1], points_pad=len(str(player[1])),
+                                            stars=player[2], stars_pad=len(str(player[2])),
+                                            star_time=time.strftime('%H:%M %d/%m', time.localtime(player[3])))
         result += '```'
     else:
         result = 'Whoops, it looks like I can\'t find that player, are you sure they\'re playing?'
@@ -158,10 +158,10 @@ async def keen(interaction: discord.Interaction):
 
     result = 'Today\'s keenest bean is:\n```'
     result += PLAYER_STR_FORMAT.format(rank=i + 1,
-                                     name=player[0], name_pad=len(player[0]),
-                                     points=player[1], points_pad=len(str(player[1])),
-                                     stars=player[2], stars_pad=len(str(player[2])),
-                                     star_time=time.strftime('%H:%M %d/%m', time.localtime(player[3])))
+                                        name=player[0], name_pad=len(player[0]),
+                                        points=player[1], points_pad=len(str(player[1])),
+                                        stars=player[2], stars_pad=len(str(player[2])),
+                                        star_time=time.strftime('%H:%M %d/%m', time.localtime(player[3])))
     result += '```'
     await interaction.followup.send(result)
 
@@ -215,10 +215,10 @@ async def daily(interaction: discord.Interaction, day: str = None):
         leaderboard = []
         for place, player in enumerate(final_table):
             leaderboard.append(PLAYER_STR_FORMAT.format(rank=place + 1,
-                                                      name=player[0], name_pad=max_name_len,
-                                                      points=player[1], points_pad=max_points_len,
-                                                      stars=player[3], stars_pad=max_stars_len,
-                                                      star_time=time.strftime('%H:%M %d/%m', time.localtime(player[2]))))
+                                                        name=player[0], name_pad=max_name_len,
+                                                        points=player[1], points_pad=max_points_len,
+                                                        stars=player[3], stars_pad=max_stars_len,
+                                                        star_time=time.strftime('%H:%M %d/%m', time.localtime(player[2]))))
         await output_leaderboard(interaction, leaderboard)
 
 @bot.tree.command(name='remind', description='Mentions everyone with a reminder for the next Advent of Code challenge')
