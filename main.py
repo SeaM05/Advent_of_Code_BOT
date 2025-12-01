@@ -245,7 +245,7 @@ async def join(interaction: discord.Interaction):
     
     await interaction.response.defer()
 
-    login_url = "https://adventofcode.com/2024/auth/login"
+    login_url = "https://adventofcode.com/2025/auth/login"
     leaderboard_code = LEADERBOARD
 
     await interaction.followup.send(
